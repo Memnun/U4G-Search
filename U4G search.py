@@ -407,9 +407,9 @@ while looping:
 		if (andorsearch == "YES"):
 			andorswitch = True
 		if isresults:
-			RESULTS = SearchPost(usersearch, andorswitch, ALLPOSTS)
+			RESULTS = SearchPost(keywordsearch, andorswitch, ALLPOSTS)
 		else:
-			RESULTS = SearchPost(usersearch, andorswitch, RESULTS)
+			RESULTS = SearchPost(keywordsearch, andorswitch, RESULTS)
 		isresults = False
 	if searchtype == "3":
 		dateminsearch = raw_input("Enter the minimum date; any posts older than this will be excluded from your search. format as MM-DD-YYYY")
