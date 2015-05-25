@@ -405,8 +405,8 @@ while True:
 			RESULTS = SearchUser(usersearch, RESULTS)
 		isresults = False
 	if searchtype == "2":
-		keywordsearch = raw_input("\nEnter a keyword or keywords to search for within the body of the post. Separate keywords with spaces, and avoid punctiation unless that is explicitly a part of your search. Capitalization counts!\n")
-		andorsearch = raw_input("\nSearch by default searches for all key words. Would you like to instead include results that have any key word? Type 'YES' if so. ")#True is any, false is all
+		keywordsearch = raw_input("\nEnter a keyword or keywords to search for within the body of the post. Separate keywords with spaces, and avoid punctiation unless that is explicitly a part of your search.\n")
+		andorsearch = raw_input("\nSearch by default searches for all keywords. Would you like to instead include results that have any keyword? Type 'YES' if so. ")#True is any, false is all
 		andorswitch = False
 		if (andorsearch == "YES"):
 			andorswitch = True
@@ -416,8 +416,8 @@ while True:
 			RESULTS = SearchPost(keywordsearch, andorswitch, RESULTS)
 		isresults = False
 	if searchtype == "3":
-		dateminsearch = raw_input("\nEnter the minimum date; any posts older than this will be excluded from your search. format as MM-DD-YYYY\n")
-		datemaxsearch = raw_input("\nEnter the maximum date; any posts newer than this will be excluded from your search. format as MM-DD-YYYY\n")
+		dateminsearch = raw_input("\nEnter the minimum date; any posts older than this will be excluded from your search. Format as MM-DD-YYYY\n")
+		datemaxsearch = raw_input("\nEnter the maximum date; any posts newer than this will be excluded from your search. Format as MM-DD-YYYY\n")
 		if isresults:
 			RESULTS = SearchDateRange(dateminsearch, datemaxsearch, ALLPOSTS)
 		else:
