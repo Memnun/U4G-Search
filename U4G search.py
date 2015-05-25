@@ -256,11 +256,13 @@ def SearchDateRange(DATEMIN, DATEMAX, GETPOSTS):
 
 def toHTML():
     output = open("SearchResults.html", "w")
-    output.write("<html><head><title>GET YOUR U4G SEARCH HERE</title></head><body>")
+    output.write('<html><head><title>GET YOUR U4G SEARCH HERE</title><link rel="stylesheet" href="normalize.css"><link rel="stylesheet" href="css.css"></head><body>')
     for i in range(0, len(RESULTS)-1):
+    	output.write('<div class="postdata">')
         output.write("<h2>%s</h2>" % getDate(RESULTS[i]))
         output.write("<h1>%s</h1>" % getUser(RESULTS[i]))
         output.write("<p>%s</p>" % getPost(RESULTS[i]))
+        output.write("</div>")
     output.write("</body></html>")
     output.close()
 
