@@ -1,5 +1,6 @@
 import urllib
-import Tkinter
+import webbrowser
+#import Tkinter
 
 ###----------------------------------------------------------------------------------------------------------------------------------------
 #
@@ -252,6 +253,7 @@ def SearchDateRange(DATEMIN, DATEMAX, GETPOSTS):
 #GetDate
 #RESULTS
 #GLOBAL USE VARIABLES GENERATED:
+#toHTML
 ###-----------------------------
 
 def toHTML():
@@ -265,6 +267,7 @@ def toHTML():
         output.write("</div>")
     output.write("</body></html>")
     output.close()
+    webbrowser.open("SearchResults.html", new=2, autoraise=True)
 
 ###----------------------------------------------------------------------------------------------------------------------------------------
 #SEARCH PROCESSING IS DONE HERE -----------------------------------------------------------------------------------------------------------CURRENTLY BROKEN, DO NOT UNCOMMENT
