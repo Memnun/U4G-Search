@@ -195,7 +195,7 @@ def SearchPost(KEYWORDs, ANDOR, GETPOSTS):
         inpost = True
         for i in range(0,len(GETPOSTS)-1):
             for j in range(0, len(k)-1):
-                if (k[j] in getPost(GETPOSTS[i])) and inpost:
+                if (getPost(GETPOSTS[i]).find(k[j])) >= 0 and inpost:
                     POSTS.append(GETPOSTS[i])
                     inpost = False
             inpost = True
@@ -203,7 +203,7 @@ def SearchPost(KEYWORDs, ANDOR, GETPOSTS):
         kcount = 0
         for i in range(0, len(GETPOSTS)-1):
             for j in range(0, len(k)-1):
-                if k[j] in GETPOSTS[i]:
+                if (getPost(GETPOSTS[i]).find(k[j])) >= 0:
                     kcount += 1
             if kcount == len(k):
                 POSTS.append(GETPOSTS[i])
