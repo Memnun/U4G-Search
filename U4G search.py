@@ -120,45 +120,36 @@ print "Thread Four Page Count: ", ThreadFourCount
 ###-----------------------------
 
 ##GET POSTS FROM THREAD ONE
-for i in range(1, ThreadOneCount):
+for i in range(1, ThreadOneCount+1):
     page = urllib.urlopen(ThreadOneURL+"/page"+str(i)).read().split('<li class="postbitlegacy')
     for j in range(1, len(page)):
         ALLPOSTS.append(page[j])
-    	print len(ALLPOSTS)
     print i
-    print len(page)
 print "THREAD ONE ARCHIVED"
 
 ##GET POSTS FROM THREAD TWO
-for i in range(1, ThreadTwoCount):
+for i in range(1, ThreadTwoCount+1):
     page = urllib.urlopen(ThreadTwoURL+"/page"+str(i)).read().split('<li class="postbitlegacy')
     for j in range(1, len(page)):
         ALLPOSTS.append(page[j])
-    	print len(ALLPOSTS)
     print i
-    print len(page)
 print "THREAD TWO ARCHIVED"
 
 ##GET POSTS FROM THREAD THREE
-for i in range(1, ThreadThreeCount):
+for i in range(1, ThreadThreeCount+1):
     page = urllib.urlopen(ThreadThreeURL+"/page"+str(i)).read().split('<li class="postbitlegacy')
     for j in range(1, len(page)):
         ALLPOSTS.append(page[j])
-    	print len(ALLPOSTS)
     print i
-    print len(page)
 print "THREAD THREE ARCHIVED"
 
 ##GET POSTS FROM THREAD FOUR
-for i in range(1, ThreadFourCount):
+for i in range(1, ThreadFourCount+1):
     page = urllib.urlopen(ThreadFourURL+"/page"+str(i)).read().split('<li class="postbitlegacy')
     for j in range(1, len(page)):
         ALLPOSTS.append(page[j])
-    	print len(ALLPOSTS)
     print i
-    print len(page)
 print "THREAD FOUR ARCHIVED"
-
 ###----------------------------------------------------------------------------------------------------------------------------------------
 #GET POST DATA FROM A POST STRING
 ##-----------------------------------------------------------------------------------------------------------------------------------------
@@ -191,43 +182,43 @@ def getDate(POST):
 
 def SearchUser(USER, GETPOSTS):
     POSTS=[]
-    for i in range(0,len(GETPOSTS)-1):
+    for i in range(0,len(GETPOSTS)):
         if getUser(GETPOSTS[i]) == USER:
             POSTS.append(GETPOSTS[i])
     return POSTS
 
 def SearchPost(KEYWORDs, ANDOR, GETPOSTS):
-	POSTS=[]
-	if (" " in KEYWORDs):
-		k = KEYWORDs.split()
-		if ANDOR:
-			inpost = True
-			for i in range(0, len(GETPOSTS)-1):
-				for j in range(0, len(k)-1):
-					if (k[j].lower() in getPost(GETPOSTS[i]).lower()) and inpost:
-						POSTS.append(GETPOSTS[i])
-						inpost = False
-				inpost = True
-		else:
-			kcount = 0
-			for i in range(0, len(GETPOSTS)-1):
-				for j in range(0, len(k)-1):
-					if (k[j].lower() in getPost(GETPOSTS[i]).lower()):
-						kcount += 1
-				if kcount == len(k):
-					POSTS.append(GETPOSTS[i])
-				kcount = 0
-	else:
-		for i in range(0, len(GETPOSTS)-1):
-			if(KEYWORDs.lower() in getPost(GETPOSTS[i]).lower()):
-				POSTS.append(GETPOSTS[i])
-	return POSTS
+    POSTS=[]
+    if (" " in KEYWORDs):
+        k = KEYWORDs.split()
+        if ANDOR:
+            inpost = True
+            for i in range(0, len(GETPOSTS)):
+                for j in range(0, len(k)):
+                    if (k[j].lower() in getPost(GETPOSTS[i]).lower()) and inpost:
+                        POSTS.append(GETPOSTS[i])
+                        inpost = False
+                inpost = True
+        else:
+            kcount = 0
+            for i in range(0, len(GETPOSTS)):
+                for j in range(0, len(k)):
+                    if (k[j].lower() in getPost(GETPOSTS[i]).lower()):
+                        kcount += 1
+                if kcount == len(k):
+                    POSTS.append(GETPOSTS[i])
+                kcount = 0
+    else:
+        for i in range(0, len(GETPOSTS)):
+            if(KEYWORDs.lower() in getPost(GETPOSTS[i]).lower()):
+                POSTS.append(GETPOSTS[i])
+    return POSTS
 
 def SearchDateRange(DATEMIN, DATEMAX, GETPOSTS):
     POSTS=[]
     dmin = DATEMIN.split('-')
     dmax = DATEMAX.split('-')
-    for i in range(0,len(GETPOSTS)-1):
+    for i in range(0,len(GETPOSTS)):
         pdate = getDate(GETPOSTS[i]).split('-')
         Greater = False
         Less = False
@@ -266,8 +257,8 @@ def SearchDateRange(DATEMIN, DATEMAX, GETPOSTS):
 def toHTML():
     output = open("SearchResults.html", "w")
     output.write('<html><head><title>GET YOUR U4G SEARCH HERE</title><link rel="stylesheet" href="normalize.css"><link rel="stylesheet" href="css.css"></head><body>')
-    for i in range(0, len(RESULTS)-1):
-    	output.write('<div class="postdata">')
+    for i in range(0, len(RESULTS)):
+        output.write('<div class="postdata">')
         output.write("<h2>%s</h2>" % getDate(RESULTS[i]))
         output.write("<h1>%s</h1>" % getUser(RESULTS[i]))
         output.write("<p>%s</p>" % getPost(RESULTS[i]))
@@ -408,35 +399,35 @@ if __name__ == "__main__":
 
 isresults = True
 while True:
-	searchtype = raw_input("\nSelect a search method; type 1 for Username, 2 for keyword(s), or 3 for a date range. Alternatively, type 4 to get your search results or 5 to reset search criteria ")
-	if searchtype == "1":
-		usersearch = raw_input("\nEnter the username to search for. Remember, capitalization matters!\n")
-		if isresults:
-			RESULTS = SearchUser(usersearch, ALLPOSTS)
-		else:
-			RESULTS = SearchUser(usersearch, RESULTS)
-		isresults = False
-	if searchtype == "2":
-		keywordsearch = raw_input("\nEnter a keyword or keywords to search for within the body of the post. Separate keywords with spaces, and avoid punctiation unless that is explicitly a part of your search.\n")
-		andorsearch = raw_input("\nSearch by default searches for all keywords. Would you like to instead include results that have any keyword? Type 'YES' if so. ")#True is any, false is all
-		andorswitch = False
-		if (andorsearch == "YES"):
-			andorswitch = True
-		if isresults:
-			RESULTS = SearchPost(keywordsearch, andorswitch, ALLPOSTS)
-		else:
-			RESULTS = SearchPost(keywordsearch, andorswitch, RESULTS)
-		isresults = False
-	if searchtype == "3":
-		dateminsearch = raw_input("\nEnter the minimum date; any posts older than this will be excluded from your search. Format as MM-DD-YYYY\n")
-		datemaxsearch = raw_input("\nEnter the maximum date; any posts newer than this will be excluded from your search. Format as MM-DD-YYYY\n")
-		if isresults:
-			RESULTS = SearchDateRange(dateminsearch, datemaxsearch, ALLPOSTS)
-		else:
-			RESULTS = SearchDateRange(dateminsearch, datemaxsearch, RESULTS)
-		isresults = False
-	if searchtype == "4" and isresults == False:
-		toHTML()
-	if searchtype == "5":
-		isresults = True
-		print "\nSearch criteria reset."
+    searchtype = raw_input("\nSelect a search method; type 1 for Username, 2 for keyword(s), or 3 for a date range. Alternatively, type 4 to get your search results or 5 to reset search criteria ")
+    if searchtype == "1":
+        usersearch = raw_input("\nEnter the username to search for. Remember, capitalization matters!\n")
+        if isresults:
+            RESULTS = SearchUser(usersearch, ALLPOSTS)
+        else:
+            RESULTS = SearchUser(usersearch, RESULTS)
+        isresults = False
+    if searchtype == "2":
+        keywordsearch = raw_input("\nEnter a keyword or keywords to search for within the body of the post. Separate keywords with spaces, and avoid punctiation unless that is explicitly a part of your search.\n")
+        andorsearch = raw_input("\nSearch by default searches for all keywords. Would you like to instead include results that have any keyword? Type 'YES' if so. ")#True is any, false is all
+        andorswitch = False
+        if (andorsearch == "YES"):
+            andorswitch = True
+        if isresults:
+            RESULTS = SearchPost(keywordsearch, andorswitch, ALLPOSTS)
+        else:
+            RESULTS = SearchPost(keywordsearch, andorswitch, RESULTS)
+        isresults = False
+    if searchtype == "3":
+        dateminsearch = raw_input("\nEnter the minimum date; any posts older than this will be excluded from your search. Format as MM-DD-YYYY\n")
+        datemaxsearch = raw_input("\nEnter the maximum date; any posts newer than this will be excluded from your search. Format as MM-DD-YYYY\n")
+        if isresults:
+            RESULTS = SearchDateRange(dateminsearch, datemaxsearch, ALLPOSTS)
+        else:
+            RESULTS = SearchDateRange(dateminsearch, datemaxsearch, RESULTS)
+        isresults = False
+    if searchtype == "4" and isresults == False:
+        toHTML()
+    if searchtype == "5":
+        isresults = True
+        print "\nSearch criteria reset."
