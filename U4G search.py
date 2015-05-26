@@ -21,7 +21,6 @@ RESULTS=[]
 #GET PAGE COUNT FOR EACH THREAD
 ##-----------------------------------------------------------------------------------------------------------------------------------------
 #GLOBAL USE VARIABLES USED:
-#PageOneOf
 #ThreadOneURL
 #ThreadTwoURL
 #ThreadThreeURL
@@ -125,7 +124,9 @@ for i in range(1, ThreadOneCount):
     page = urllib.urlopen(ThreadOneURL+"/page"+str(i)).read().split('<li class="postbitlegacy')
     for j in range(1, len(page)):
         ALLPOSTS.append(page[j])
-    print len(ALLPOSTS)
+    	print len(ALLPOSTS)
+    print page
+    print len(page)
 print "THREAD ONE ARCHIVED"
 
 ##GET POSTS FROM THREAD TWO
@@ -133,7 +134,9 @@ for i in range(1, ThreadTwoCount):
     page = urllib.urlopen(ThreadTwoURL+"/page"+str(i)).read().split('<li class="postbitlegacy')
     for j in range(1, len(page)):
         ALLPOSTS.append(page[j])
-    print len(ALLPOSTS)
+    	print len(ALLPOSTS)
+    print page
+    print len(page)
 print "THREAD TWO ARCHIVED"
 
 ##GET POSTS FROM THREAD THREE
@@ -141,7 +144,9 @@ for i in range(1, ThreadThreeCount):
     page = urllib.urlopen(ThreadThreeURL+"/page"+str(i)).read().split('<li class="postbitlegacy')
     for j in range(1, len(page)):
         ALLPOSTS.append(page[j])
-    print len(ALLPOSTS)
+    	print len(ALLPOSTS)
+    print page
+    print len(page)
 print "THREAD THREE ARCHIVED"
 
 ##GET POSTS FROM THREAD FOUR
@@ -149,7 +154,9 @@ for i in range(1, ThreadFourCount):
     page = urllib.urlopen(ThreadFourURL+"/page"+str(i)).read().split('<li class="postbitlegacy')
     for j in range(1, len(page)):
         ALLPOSTS.append(page[j])
-    print len(ALLPOSTS)
+    	print len(ALLPOSTS)
+    print page
+    print len(page)
 print "THREAD FOUR ARCHIVED"
 
 ###----------------------------------------------------------------------------------------------------------------------------------------
