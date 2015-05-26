@@ -125,7 +125,7 @@ for i in range(1, ThreadOneCount):
     for j in range(1, len(page)):
         ALLPOSTS.append(page[j])
     	print len(ALLPOSTS)
-    print page
+    print i
     print len(page)
 print "THREAD ONE ARCHIVED"
 
@@ -135,7 +135,7 @@ for i in range(1, ThreadTwoCount):
     for j in range(1, len(page)):
         ALLPOSTS.append(page[j])
     	print len(ALLPOSTS)
-    print page
+    print i
     print len(page)
 print "THREAD TWO ARCHIVED"
 
@@ -145,7 +145,7 @@ for i in range(1, ThreadThreeCount):
     for j in range(1, len(page)):
         ALLPOSTS.append(page[j])
     	print len(ALLPOSTS)
-    print page
+    print i
     print len(page)
 print "THREAD THREE ARCHIVED"
 
@@ -155,7 +155,7 @@ for i in range(1, ThreadFourCount):
     for j in range(1, len(page)):
         ALLPOSTS.append(page[j])
     	print len(ALLPOSTS)
-    print page
+    print i
     print len(page)
 print "THREAD FOUR ARCHIVED"
 
