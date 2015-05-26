@@ -4,7 +4,7 @@ body {
 
 div.postdata {
 	max-width: 1080px;
-	margin: 5%;
+	margin: 5% auto;
 }
 
 div.postdata h2 {
