@@ -183,7 +183,7 @@ def getDate(POST):
 def SearchUser(USER, GETPOSTS):
     POSTS=[]
     for i in range(0,len(GETPOSTS)):
-        if getUser(GETPOSTS[i]) == USER:
+        if getUser(GETPOSTS[i]).lower() == USER.lower():
             POSTS.append(GETPOSTS[i])
     return POSTS
 
@@ -261,7 +261,7 @@ def toHTML():
         output.write('<div class="postdata">')
         output.write("<h2>%s</h2>" % getDate(RESULTS[i]))
         output.write("<h1>%s</h1>" % getUser(RESULTS[i]))
-        output.write("<p>%s</p>" % getPost(RESULTS[i]))
+        output.write('<div class="postbody"><p>%s</p></div>' % getPost(RESULTS[i]))
         output.write("</div>")
     output.write("</body></html>")
     output.close()
@@ -401,7 +401,7 @@ isresults = True
 while True:
     searchtype = raw_input("\nSelect a search method; type 1 for Username, 2 for keyword(s), or 3 for a date range. Alternatively, type 4 to get your search results or 5 to reset search criteria ")
     if searchtype == "1":
-        usersearch = raw_input("\nEnter the username to search for. Remember, capitalization matters!\n")
+        usersearch = raw_input("\nEnter the username to search for.\n")
         if isresults:
             RESULTS = SearchUser(usersearch, ALLPOSTS)
         else:
@@ -411,7 +411,7 @@ while True:
         keywordsearch = raw_input("\nEnter a keyword or keywords to search for within the body of the post. Separate keywords with spaces, and avoid punctiation unless that is explicitly a part of your search.\n")
         andorsearch = raw_input("\nSearch by default searches for all keywords. Would you like to instead include results that have any keyword? Type 'YES' if so. ")#True is any, false is all
         andorswitch = False
-        if (andorsearch == "YES"):
+        if (andorsearch.lower() == "yes"):
             andorswitch = True
         if isresults:
             RESULTS = SearchPost(keywordsearch, andorswitch, ALLPOSTS)
