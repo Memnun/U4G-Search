@@ -64,7 +64,7 @@ for i in range(1, ThreadFourCount+1):
     page = urllib.urlopen(ThreadFourURL+"/page"+str(i)).read().split('<li class="postbitlegacy')
     for j in range(1, len(page)):
         ALLPOSTS.append(page[j])
-    print i
+    print "Page %d of %d" % (i,ThreadFourCount)
 print "THREAD FOUR LOADED"
 
 ###----------------------------------------------------------------------------------------------------------------------------------------
