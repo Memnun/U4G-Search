@@ -15,6 +15,16 @@ div.postdata h2 {
 	padding: .5% 5%;
 	margin: 0;
 }
+
+div.postdata h3 {
+	font-size:.25em;
+	background-color: #46F;
+	color: #FFF;
+	width: 100%;
+	padding: .5% 5%;
+	margin: 0;
+}
+
 div.postdata h1 {
 	font font-size: 1.75em;
 	background-color: #46F;

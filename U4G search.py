@@ -41,7 +41,6 @@ elif CountDigitThr == '<':
     ThreadFourCount = (int(CountDigitOne)*10)+int(CountDigitTwo)
 else:
     ThreadFourCount = (int(CountDigitOne)*100)+(int(CountDigitTwo)*10)+int(CountDigitThr)
-print "Thread Four Page Count: ", ThreadFourCount
 
 ###----------------------------------------------------------------------------------------------------------------------------------------
 #GET THE BLOODY POST STRING, PUT IT IN AN ARRAY OF BLOODY POST STRINGS I DONT EVEN CARE ANY MORE
@@ -64,9 +63,9 @@ for i in range(1, ThreadFourCount+1):
     page = urllib.urlopen(ThreadFourURL+"/page"+str(i)).read().split('<li class="postbitlegacy')
     for j in range(1, len(page)):
         ALLPOSTS.append(page[j])
-    print "Page %d of %d" % (i,ThreadFourCount)
+    print "Page %d of %d loaded" % (i,ThreadFourCount)
 print "THREAD FOUR LOADED"
-
+print "%d posts counted" % len(ALLPOSTS)
 ###----------------------------------------------------------------------------------------------------------------------------------------
 #GET POST DATA FROM A POST STRING
 ##-----------------------------------------------------------------------------------------------------------------------------------------
@@ -75,6 +74,7 @@ print "THREAD FOUR LOADED"
 #getUser(str POST)
 #getPost(str POST)
 #getDate(str POST)
+#getID(str POST)
 ###-----------------------------
 
 def getUser(POST):
@@ -85,6 +85,9 @@ def getPost(POST):
 
 def getDate(POST):
     return POST.split('<span class="date">')[1].split(',&nbsp;')[0]
+
+def getID(POST):
+	return POST.split('id="post_')[1].split('">')[0]
 
 ###----------------------------------------------------------------------------------------------------------------------------------------
 #SEARCH FUNCTIONS
@@ -166,6 +169,7 @@ def SearchDateRange(DATEMIN, DATEMAX, GETPOSTS):
 #GetUser
 #GetPost
 #GetDate
+#GetID
 #RESULTS
 #GLOBAL USE VARIABLES GENERATED:
 #toHTML
@@ -177,6 +181,7 @@ def toHTML():
     for i in range(0, len(RESULTS)):
         output.write('<div class="postdata">')
         output.write("<h2>%s</h2>" % getDate(RESULTS[i]))
+        output.write("<h3>%s</h3>" % getID(RESULTS[i]))
         output.write("<h1>%s</h1>" % getUser(RESULTS[i]))
         output.write('<div class="postbody"><p>%s</p></div>' % getPost(RESULTS[i]))
         output.write("</div>")
